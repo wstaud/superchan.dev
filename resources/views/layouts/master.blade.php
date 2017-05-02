@@ -20,7 +20,14 @@
         <div class="rightMenu">
             <ul>
                 @if (Auth::check())
-                <li><a href="/account">My Account</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Account</a>
+                    <div class="dropdown-content">
+                          <a href="#">My content</a>
+                          <a href="/account">Edit Profile</a>
+                          <a href="/logout">Logout</a>
+                    </div>
+                </li>
                 @else
                 <li><a href="/login">Login/Signup</a></li>
                 @endif

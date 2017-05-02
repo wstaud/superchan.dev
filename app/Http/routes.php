@@ -33,3 +33,8 @@ Route::get('/signup', 'Auth\AuthController@create');
 Route::get('/register', 'Auth\AuthController@getRegister');
 
 Route::post('/register', 'Auth\AuthController@postRegister');
+
+Route::get('/page/not/found',function($closure){
+  // second parameter is optional. 
+  abort(404);
+});
