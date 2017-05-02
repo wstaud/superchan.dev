@@ -1,0 +1,85 @@
+@import 'frontpage'
+
+html, body
+	height: 100%
+	margin: 0
+
+.topbar
+	width: 100%
+	height: 30px
+	background: #880000
+
+.whiteBox
+	background: #f2fbff
+	padding: 30px
+	border-radius: 8px
+
+	h1
+		color: #880000
+
+.thumbnail
+	width: 100%
+	height: auto
+	overflow: hidden
+
+
+.fullHeight
+	height: 100%
+
+.killPadding
+	padding: 0
+
+.post
+	margin-top: 10px
+
+.leftButton
+	padding-left: 15px
+
+	button
+		border-top-left-radius: 0
+		border-top-right-radius: 0
+		border-bottom-right-radius: 0
+		background: #FFCCAA
+		border: 1px solid #FFCCAA
+
+	button:hover
+		background: #965a33
+		border: 1px solid #965a33
+
+.rightButton
+	padding-right: 15px
+
+	a
+		border-top-left-radius: 0
+		border-top-right-radius: 0
+		border-bottom-left-radius: 0
+		background: #f9934f
+		border: 1px solid #f9934f
+
+	a:hover
+		background: #965a33
+		border: 1px solid #965a33
+
+#loginHeaderBox
+	height: 50px
+	border-top-left-radius: 8px
+	border-top-right-radius: 8px
+	line-height: 50px
+
+@media (max-width: 576px)
+	.leftButton
+		padding-left: 15px
+		padding-right: 15px
+
+		button
+			border-bottom-left-radius: 0
+
+	.rightButton
+		padding-left: 15px
+		padding-right: 15px
+
+		a
+			border-bottom-left-radius: .25em
+
+
+

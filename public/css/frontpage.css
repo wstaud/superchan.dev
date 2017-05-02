@@ -78,4 +78,25 @@ body {
     color: #f6f7e3;
     font-size: 14px; }
 
+.leftMenu {
+  margin: 0;
+  padding: 0;
+  float: left; }
+  .leftMenu ul {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+  .leftMenu li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: 30px; }
+  .leftMenu a {
+    text-decoration: none;
+    padding-left: 20px;
+    font-family: sans;
+    color: #f6f7e3;
+    font-size: 14px; }
+
 /*# sourceMappingURL=frontpage.css.map */

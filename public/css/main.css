@@ -78,4 +78,98 @@ body {
     color: #f6f7e3;
     font-size: 14px; }
 
+.leftMenu {
+  margin: 0;
+  padding: 0;
+  float: left; }
+  .leftMenu ul {
+    float: left;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+  .leftMenu li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    line-height: 30px; }
+  .leftMenu a {
+    text-decoration: none;
+    padding-left: 20px;
+    font-family: sans;
+    color: #f6f7e3;
+    font-size: 14px; }
+
+html, body {
+  height: 100%;
+  margin: 0; }
+
+.topbar {
+  width: 100%;
+  height: 30px;
+  background: #880000; }
+
+.whiteBox {
+  background: #f2fbff;
+  padding: 30px;
+  border-radius: 8px; }
+  .whiteBox h1 {
+    color: #880000; }
+
+.thumbnail {
+  width: 100%;
+  height: auto;
+  overflow: hidden; }
+
+.fullHeight {
+  height: 100%; }
+
+.killPadding {
+  padding: 0; }
+
+.post {
+  margin-top: 10px; }
+
+.leftButton {
+  padding-left: 15px; }
+  .leftButton button {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    background: #FFCCAA;
+    border: 1px solid #FFCCAA; }
+  .leftButton button:hover {
+    background: #965a33;
+    border: 1px solid #965a33; }
+
+.rightButton {
+  padding-right: 15px; }
+  .rightButton a {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background: #f9934f;
+    border: 1px solid #f9934f; }
+  .rightButton a:hover {
+    background: #965a33;
+    border: 1px solid #965a33; }
+
+#loginHeaderBox {
+  height: 50px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  line-height: 50px; }
+
+@media (max-width: 576px) {
+  .leftButton {
+    padding-left: 15px;
+    padding-right: 15px; }
+    .leftButton button {
+      border-bottom-left-radius: 0; }
+
+  .rightButton {
+    padding-left: 15px;
+    padding-right: 15px; }
+    .rightButton a {
+      border-bottom-left-radius: 0.25em; } }
+
 /*# sourceMappingURL=main.css.map */
