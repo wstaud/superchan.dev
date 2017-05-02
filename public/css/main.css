@@ -120,6 +120,9 @@ html, body {
   height: auto;
   overflow: hidden; }
 
+.marginTop {
+  margin-top: 40px; }
+
 .fullHeight {
   height: 100%; }
 
@@ -128,6 +131,9 @@ html, body {
 
 .post {
   margin-top: 10px; }
+
+.contentPhoto {
+  max-height: 600px; }
 
 .leftButton {
   padding-left: 15px; }
