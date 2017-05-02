@@ -27,6 +27,8 @@ class AuthController extends Controller
 
     protected $loginPath = '/login'; //Defines path of login in case you fail
 
+    protected $registerPath = '/register';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -58,6 +60,7 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
+
     protected function create(array $data)
     {
         return User::create([

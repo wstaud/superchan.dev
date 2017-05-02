@@ -14,6 +14,8 @@
 
 Route::get('/', 'HomeController@showWelcome');
 
+Route::resource('/account', 'AccountController');
+
 // Post routes
 Route::resource('/posts', 'PostsController'); //A resource controller
 

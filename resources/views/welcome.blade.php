@@ -17,7 +17,11 @@
                     <h1>Boards</h1>
                     <div class="rightMenu">
                         <ul>
+                            @if (Auth::check())
+                            <li><a href="/account">My Account</a></li>
+                            @else
                             <li><a href="/login">Login/Signup</a></li>
+                            @endif
                             <li><a href="/posts">Browse All</a></li>
                         </ul>
                     </div>
