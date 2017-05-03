@@ -11,6 +11,13 @@ body {
     bottom: -4px;
     position: relative; }
 
+.profileMenu {
+  width: 100%;
+  height: 30px;
+  background: #d8d8d8; }
+  .profileMenu a {
+    color: black; }
+
 .boards-fp {
   background: #f2fbff;
   width: 800px;

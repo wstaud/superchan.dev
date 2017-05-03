@@ -38,3 +38,14 @@ Route::get('/page/not/found',function($closure){
   // second parameter is optional. 
   abort(404);
 });
+
+// All errors
+Route::get('/404', function()
+{
+    return view('errors/404');
+});
+
+Route::get('/403', function()
+{
+    return view('errors/403');
+});

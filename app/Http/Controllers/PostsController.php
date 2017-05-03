@@ -8,9 +8,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use Log;
-use DB;
 use Input;
 use Auth;
+use App\Models\Post;
+use DB;
 
 class PostsController extends Controller
 {
@@ -21,7 +22,7 @@ class PostsController extends Controller
         $posts = \App\Models\Post::orderBy('created_at', 'desc')->paginate(8);
 
         if(Input::has('b')){
-            $posts = DB::table('posts')->where('board',Input::get('b'))->get();
+            $posts = \App\Models\Post::orderBy('created_at', 'desc')->where('board',Input::get('b'))->paginate(8);
         }
         $data = array('posts' => $posts, 'user' => $loggedInUser);
 

@@ -1,15 +1,25 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <h3>Your profile</h3>
+        <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+            <div class="profileMenu">
+                <div class="leftMenu">
             <ul>
-                <li><a href="/account/edit">Edit Profile</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/posts">All</a></li>
+            </ul>
+        </div>
+        <div class="rightMenu">
+            <ul>
                 <li><a href="/logout">Logout</a></li>
             </ul>
         </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col">
             <h1>Your Posts</h1>
             @foreach ($posts as $post)
