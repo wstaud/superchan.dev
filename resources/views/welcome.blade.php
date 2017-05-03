@@ -101,7 +101,7 @@
                     </div>
                 </div>      
             </div>
-            <h3><a href="/posts/create">Start Thread</a></h3>
+            <h3 class="centerText" id="submitThread"><a href="/posts/create">Start Thread</a></h3>
         </div>
     </body>
 </html>
