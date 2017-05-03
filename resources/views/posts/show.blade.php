@@ -16,7 +16,7 @@
 		    <p>{{$post->content}}</p>
 		    <a href="{{$post->url}}">{{$post->url}}</a>
 			@if($user === $post->created_by)
-            <p class="timeFont">Created {{$post->created_at->diffForHumans()}} by: {{$post->user->name}}   <a href="/posts/{{$post->id}}/edit">Edit</a></p>
+            <p class="timeFont">Created {{$post->created_at->diffForHumans()}} by: {{$post->user->name}}    <a href="/posts/{{$post->id}}/edit">Edit</a>    <span class="danger"><a href="/posts/{{$post->id}}/delete">Delete</a></span></p>
             @else
             <p class="timeFont">Created {{$post->created_at->diffForHumans()}} by: {{$post->user->name}}</p>
             @endif

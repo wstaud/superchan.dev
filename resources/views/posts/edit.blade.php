@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="container-fluid fullHeight">
-    <div class="row align-items-center fullHeight">
+    <div class="row align-items-center fullHeight killFlex">
         <div class="col-md-6 offset-md-3 col-sm offset-sm-0">
             {!! Form::open(
                 array( 

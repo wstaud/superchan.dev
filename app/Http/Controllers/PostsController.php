@@ -105,7 +105,7 @@ class PostsController extends Controller
         if(Auth::user()->id === $post->created_by){
             return view('/posts/edit')->with('post', $post);
         }else{
-            abort(404);
+            abort(403);
         }
         
     }
@@ -114,6 +114,7 @@ class PostsController extends Controller
     {   
         $post = \App\Models\Post::findOrFail($id);
         $post->title = $request->title;
+        $post->board = $request->board;
         $post->url = $request->url;
         $post->content = $request->content;
         $post->created_by = $post->created_by;
