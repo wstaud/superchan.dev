@@ -28,25 +28,50 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
         $rules = array(
             'title' => 'required|max:100',
-            'url'   => 'required',
-            'content' => 'required'
+            'board' => 'required|max:100',
         );
 
         $this->validate($request, $rules);
 
-        $post = new \App\Models\Post();
-        $post->title = $request->title;
-        $post->url = $request->url;
-        $post->content = $request->content;
-        $post->created_by = 1; //TODO: Update this to actual user ID session
-        $post->save();
-        
-        $request->session()->flash('successMessage', 'Post saved successfully');
-        Log::info('New post saved', $request->all());
+        if(!empty($request->url) || $request->hasFile('image') || !empty($request->content)) {
+            //Set known variables first
+            $post = new \App\Models\Post();
+            $post->title = $request->title;
+            $post->content = $request->content;
+            $post->board = $request->board;
+            $post->created_by = 1; //TODO: Update this to actual user ID session
+            if(!empty($request->url)){
+                $post->url = $request->url;
+            }
+            if($request->hasFile('image')){
+                if($request->file('image')->getClientSize() <= 41943040){
+                    dd($request->file('image'));
+                //change image name
+                $imageName =  time() . '.' . 
+                $request->file('image')->getClientOriginalExtension();
+                //Move image to new folder
+                $request->file('image')->move(
+                    base_path() . '/public/img/uploads/', $imageName
+                );
 
-        return redirect()->action('PostsController@show', [$post->id]); //Redirects to post after creation
+                $post->photo = $imageName;
+                }
+            }
+            if(!empty($request->content)){
+                $post->content = $request->content;
+            }
+            $post->save();
+            $request->session()->flash('successMessage', 'Post saved successfully');
+            Log::info('New post saved', $request->all());
+
+            return redirect()->action('PostsController@show', [$post->id]); //Redirects to post after creation
+
+        }else{
+            $request->session()->flash('errorMessage', 'You need at least one of the three: Content, photo or URL');
+        }
     }
 
     public function show($id)

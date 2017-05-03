@@ -3,11 +3,13 @@
 
 @section('content')
 <div class="container-fluid marginTop">
+	@if(!empty($post->photo))
 	<div class="row">
 	    <div class="col-sm-12 text-center">
-	        <a href="https://images7.alphacoders.com/344/344627.jpg"><img class="img-fluid contentPhoto" src="https://images7.alphacoders.com/344/344627.jpg"></a>
+	        <a href="/img/uploads/{{$post->photo}}"><img class="img-fluid contentPhoto" src="/img/uploads/{{$post->photo}}"></a>
 	    </div>
 	</div>
+	@endif
 	<div class="row marginTop">
 		<div class="col-sm-12">
 			<h4>{{$post->title}}</h4>

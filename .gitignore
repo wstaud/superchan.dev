@@ -5,3 +5,5 @@ Homestead.json
 .env
 .sass-cache/
 config.codekit3
+.DS_Store
+img/
