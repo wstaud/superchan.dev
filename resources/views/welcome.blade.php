@@ -101,6 +101,7 @@
                     </div>
                 </div>      
             </div>
+            <h3><a href="/posts/create">Start Thread</a></h3>
         </div>
     </body>
 </html>

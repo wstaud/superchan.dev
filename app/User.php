@@ -23,6 +23,10 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $table = 'users';
 
+    public function posts() {
+        return $this->hasMany('App\Models\Post', 'created_by');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Session;
+use Log;
+use DB;
+use Input;
+use Auth;
 
 class AccountController extends Controller
 {
@@ -16,7 +21,10 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('/account');
+        $user = Auth::user();
+        $posts = $user->posts;
+
+        return view('/account')->with('posts', $posts);
     }
 
     /**

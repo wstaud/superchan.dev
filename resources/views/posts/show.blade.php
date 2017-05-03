@@ -15,7 +15,7 @@
 			<h4>{{$post->title}}</h4>
 		    <p>{{$post->content}}</p>
 		    <a href="{{$post->url}}">{{$post->url}}</a>
-			<p class="timeFont">Created on: {{$post->created_at->diffForHumans()}} by:</p>
+			<p class="timeFont">Created on: {{$post->created_at->diffForHumans()}} by: {{$post->user->name}}</p>
 		</div>
 	</div>
 </div>

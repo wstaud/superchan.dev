@@ -115,10 +115,13 @@ html, body {
   .whiteBox h1 {
     color: #880000; }
 
+.thumbnailContainer {
+  max-height: 200px;
+  overflow: hidden; }
+
 .thumbnail {
   width: 100%;
-  height: auto;
-  overflow: hidden; }
+  height: auto; }
 
 .marginTop {
   margin-top: 40px; }
@@ -210,5 +213,8 @@ li.dropdown {
   #loginBox {
     display: block;
     margin-top: 50px; } }
+@media (max-width: 767px) {
+  .thumbnailContainer {
+    max-height: 600px; } }
 
 /*# sourceMappingURL=main.css.map */

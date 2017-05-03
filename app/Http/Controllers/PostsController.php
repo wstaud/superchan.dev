@@ -8,13 +8,19 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use Log;
+use DB;
+use Input;
 
 class PostsController extends Controller
 {
 
     public function index()
     {
-        $posts = \App\Models\Post::orderBy('created_at', 'desc')->paginate(4);
+        $posts = \App\Models\Post::orderBy('created_at', 'desc')->paginate(8);
+
+        if(Input::has('b')){
+            $posts = DB::table('posts')->where('board',Input::get('b'))->get();
+        }
         return view('/posts/index')->with('posts', $posts);
     }
 
@@ -28,7 +34,6 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
         $rules = array(
             'title' => 'required|max:100',
             'board' => 'required|max:100',
@@ -47,8 +52,11 @@ class PostsController extends Controller
                 $post->url = $request->url;
             }
             if($request->hasFile('image')){
-                if($request->file('image')->getClientSize() <= 41943040){
-                    dd($request->file('image'));
+                if($request->file('image')->getClientSize() <= 41943040 
+                    && ($request->file('image')->getClientOriginalExtension() == 'png' 
+                        || $request->file('image')->getClientOriginalExtension() == 'jpg'
+                        || $request->file('image')->getClientOriginalExtension() == 'jpeg'))
+                {
                 //change image name
                 $imageName =  time() . '.' . 
                 $request->file('image')->getClientOriginalExtension();
@@ -58,6 +66,8 @@ class PostsController extends Controller
                 );
 
                 $post->photo = $imageName;
+                }else{
+                    return "fail";
                 }
             }
             if(!empty($request->content)){
