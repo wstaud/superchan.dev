@@ -20,9 +20,12 @@ class PostsController extends Controller
     {
         $posts = \App\Models\Post::orderBy('created_at', 'desc')->paginate(8);
 
+        //Checking to see if url has a board. If it does, filter only that board
         if(Input::has('b')){
             $posts = \App\Models\Post::orderBy('created_at', 'desc')->where('board',Input::get('b'))->paginate(8);
         }
+
+        //If user is logged in, assigned loggedInUser to allow for post edit/delete from index
         if (Auth::check()) {
             $loggedInUser = Auth::user()->id;
         }else{
@@ -36,6 +39,7 @@ class PostsController extends Controller
 
     public function create()
     {
+        //If user is not logged in, make tem log in first.
         if (!\Auth::check()) {
             return redirect()->action('Auth\AuthController@getLogin');
         }
@@ -44,6 +48,7 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
+        //Rules that need to be met before posting
         $rules = array(
             'title' => 'required|max:100',
             'board' => 'required|max:100',
@@ -51,13 +56,14 @@ class PostsController extends Controller
 
         $this->validate($request, $rules);
 
+        //Ensures at least one of the following fields has content
         if(!empty($request->url) || $request->hasFile('image') || !empty($request->content)) {
             //Set known variables first
             $post = new \App\Models\Post();
             $post->title = $request->title;
             $post->content = $request->content;
             $post->board = $request->board;
-            $post->created_by = 1; //TODO: Update this to actual user ID session
+            $post->created_by = 1; 
             if(!empty($request->url)){
                 $post->url = $request->url;
             }
@@ -106,12 +112,23 @@ class PostsController extends Controller
 
         $data = array('post' => $post, 'user' => $loggedInUser, 'comments' => $comments);
 
+
+
         return view('/posts/show', $data);    
     }
 
     public function comment(Request $request)
     {
-        
+        if (Auth::check()) {
+            $comment = new \App\Models\Comments();
+            $comment->comment = $request->comment;
+            $comment->post_id = $request->post_id;
+            $comment->created_by = Auth::user()->id;
+            $comment->save();
+            return redirect()->action('PostsController@show', [$request->post_id]);
+        }else{
+            abort(403);
+        }   
     }
 
 

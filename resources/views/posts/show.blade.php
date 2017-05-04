@@ -30,9 +30,10 @@
                     'novalidate' => 'novalidate', 
                     'files' => true)) !!}
             {!!Form::token()!!}  
+            {!! Form::hidden ('post_id', $post->id)!!}
             <div class="form-group commentTextBox">
-                <label for="content"></label>
-                <textarea class="form-control" id="content" name="content" rows="8"></textarea>
+                <label for="comment"></label>
+                <textarea class="form-control" id="comment" name="comment" rows="8"></textarea>
             </div>
             <div class="form-group commentTextBox">
                 {!! Form::label('Image') !!}

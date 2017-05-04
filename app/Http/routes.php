@@ -19,7 +19,7 @@ Route::resource('/account', 'AccountController');
 // Post routes
 Route::resource('/posts', 'PostsController'); //A resource controller
 
-Route::post('/posts/show/comment', 'PostsController@comment');
+Route::post('/posts', 'PostsController@comment');
 
 // Authentication routes...
 Route::get('/login', 'Auth\AuthController@getLogin');
