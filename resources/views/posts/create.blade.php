@@ -23,47 +23,47 @@
                     <select class="form-control" id="board" name="board">
                         <option selected>Choose...</option>
                         <option>technology</option>
-                        <option>comics and cartoons</option>
-                        <option>tv and film</option>
+                        <option value="comics-cartoons">comics and cartoons</option>
+                        <option value="tv-film">tv and film</option>
                         <option>Weapons</option>
                         <option>Auto</option>
-                        <option>Animals and Nature</option>
+                        <option value="animals-nature">Animals and Nature</option>
                         <option>Sports</option>
-                        <option>Science and Math</option>
+                        <option value="science-math">Science and Math</option>
                         <option>History</option>
                         <option>Photography</option>
-                        <option>Food and Cooking</option>
+                        <option value="food-cooking">Food and Cooking</option>
                         <option>Artwork</option>
                         <option>Wallpapers</option>
                         <option>Literature</option>
                         <option>Music</option>
                         <option>Fashion</option>
-                        <option>Graphic Design</option>
+                        <option value="graphic-design">Graphic Design</option>
                         <option>GIFs</option>
-                        <option>US News</option>
-                        <option>World News</option>
+                        <option value="us-news">US News</option>
+                        <option value="world-news">World News</option>
                         <option>Politics</option>
-                        <option>Liberals</option>
+                        <option>Snowflakes</option>
                         <option>Alt-Right</option>
-                        <option>Business and Finance</option>
+                        <option value="business-finance">Business and Finance</option>
                         <option>Fitness</option>
                         <option>Travel</option>
                         <option>Advice</option>
                         <option>E-Sports</option>
-                        <option>Video Games General</option>
+                        <option value="video-games-general">Video Games General</option>
                         <option>FPS</option>
                         <option>MMO</option>
                         <option>RPG</option>
-                        <option>Wallpapers</option>
-                        <option>PC Masters</option>
-                        <option>Console Peasants</option>
-                        <option>Retro Gaming</option>
+                        <option value="gaming-wallpapers">Gaming Wallpapers</option>
+                        <option value="pc-masters">PC Masters</option>
+                        <option value="console-peasants">Console Peasants</option>
+                        <option value="retro-gaming">Retro Gaming</option>
                         <option>Anime</option>
                         <option>Manga</option>
-                        <option>Anime Wallpapers</option>
+                        <option value="anime-wallpapers">Anime Wallpapers</option>
                         <option>Cosplay</option>
                         <option>Random</option>
-                        <option>Offical Stuff</option>
+                        <option value="offical-stuff">Offical Stuff</option>
                         <option>Vaping</option>
                         <option>Programming</option>
                     </select>

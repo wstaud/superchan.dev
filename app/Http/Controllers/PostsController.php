@@ -96,7 +96,11 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        $loggedInUser = Auth::user()->id;
+        $loggedInUser = "";
+        if (Auth::check()) {
+            $loggedInUser = Auth::user()->id;
+        }   
+        $loggedInUser = "";
         $post = \App\Models\Post::findOrFail($id);
 
         $data = array('post' => $post, 'user' => $loggedInUser);
@@ -106,14 +110,16 @@ class PostsController extends Controller
 
     public function edit($id)
     {
-        
         $post = \App\Models\Post::findOrFail($id);
-        if(Auth::user()->id === $post->created_by){
-            return view('/posts/edit')->with('post', $post);
+        if (Auth::check()) {
+            if(Auth::user()->id === $post->created_by){
+                return view('/posts/edit')->with('post', $post);
+            }else{
+                abort(403);
+            }
         }else{
             abort(403);
-        }
-        
+        } 
     }
 
     public function update(Request $request, $id)
