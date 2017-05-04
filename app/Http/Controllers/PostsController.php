@@ -32,9 +32,8 @@ class PostsController extends Controller
             $loggedInUser = "";
         }
         $data = array('posts' => $posts, 'user' => $loggedInUser);
-        return view('/posts/index', $data);
-        
-        
+
+        return view('/posts/index', $data); 
     }
 
     public function create()
@@ -43,11 +42,15 @@ class PostsController extends Controller
         if (!\Auth::check()) {
             return redirect()->action('Auth\AuthController@getLogin');
         }
+
         return view('/posts/create');
     }
 
     public function store(Request $request)
     {
+        if (!\Auth::check()) {
+            return redirect()->action('Auth\AuthController@getLogin');
+        }
         //Rules that need to be met before posting
         $rules = array(
             'title' => 'required|max:100',
@@ -63,14 +66,17 @@ class PostsController extends Controller
             $post->title = $request->title;
             $post->content = $request->content;
             $post->board = $request->board;
-            $post->created_by = 1; 
+            $post->created_by = Auth::user()->id; 
+            //Assign URL if it exists
             if(!empty($request->url)){
                 $post->url = $request->url;
             }
+            //Chcek for image, ensure it's within size and type limits
             if($request->hasFile('image')){
                 if($request->file('image')->getClientSize() <= 41943040 
                     && ($request->file('image')->getClientOriginalExtension() == 'png' 
                         || $request->file('image')->getClientOriginalExtension() == 'jpg'
+                        || $request->file('image')->getClientOriginalExtension() == 'gif'
                         || $request->file('image')->getClientOriginalExtension() == 'jpeg'))
                 {
                 //change image name
@@ -80,12 +86,13 @@ class PostsController extends Controller
                 $request->file('image')->move(
                     base_path() . '/public/img/uploads/', $imageName
                 );
-
+                //Save image name to server
                 $post->photo = $imageName;
                 }else{
-                    return "fail";
+                    return "fail";  // TODO: Change this to a functional error message
                 }
             }
+            // Check if content exists and asign if avaliable
             if(!empty($request->content)){
                 $post->content = $request->content;
             }
@@ -102,23 +109,28 @@ class PostsController extends Controller
 
     public function show($id)
     {
+        //Assign user blank unless active user is signed in
         $loggedInUser = "";
         if (Auth::check()) {
             $loggedInUser = Auth::user()->id;
         }   
-        $loggedInUser = "";
+        //Grab tables
         $post = \App\Models\Post::findOrFail($id);
         $comments = \App\Models\Comments::orderBy('post_id', 'desc')->where('post_id', $post->id)->paginate(20);
-
         $data = array('post' => $post, 'user' => $loggedInUser, 'comments' => $comments);
-
-
 
         return view('/posts/show', $data);    
     }
 
     public function comment(Request $request)
     {
+        //Validate user actually typed in comment
+        $rules = array(
+            'comment' => 'required|max:1000',
+        );
+        $this->validate($request, $rules);
+
+        //Check to make sure user has the right to post comments. If not, throw 403
         if (Auth::check()) {
             $comment = new \App\Models\Comments();
             $comment->comment = $request->comment;
@@ -131,11 +143,11 @@ class PostsController extends Controller
         }   
     }
 
-
-
     public function edit($id)
     {
         $post = \App\Models\Post::findOrFail($id);
+
+        //Ensure user can edit and that they are the one who created the post...if not throw 403
         if (Auth::check()) {
             if(Auth::user()->id === $post->created_by){
                 return view('/posts/edit')->with('post', $post);

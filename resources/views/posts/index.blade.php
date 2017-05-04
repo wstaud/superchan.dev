@@ -3,6 +3,13 @@
 
 @section('content')
 <div class="container">
+    @if(Input::has('b'))
+    <div class="row">
+        <div class="col-md-8 offset-md-2 col-sm-12 offset-sm-0">
+            <h1>Welcome to /b {{Input::get('b')}}</h1>
+        </div>
+    </div>
+    @endif
     @foreach ($posts as $post)
     <div class="row post">
         <div class="col-sm-12 col-md-2 align-self-center">
