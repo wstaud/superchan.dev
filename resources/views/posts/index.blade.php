@@ -17,7 +17,11 @@
         <div class="col-sm-12 col-md-10">
             <a href="/posts/{{$post->id}}"><h5>{{$post->title}}</h5></a>
             <a href="{{$post->url}}">{{$post->url}}</a>
+            @if($user === $post->created_by)
+            <p class="timeFont">Created {{$post->created_at->diffForHumans()}} by: {{$post->user->name}}    <a href="/posts/{{$post->id}}/edit">Edit</a>    <span class="danger"><a href="/posts/{{$post->id}}/delete">Delete</a></span></p>
+            @else
             <p class="timeFont">Created {{$post->created_at->diffForHumans()}} by: {{$post->user->name}}</p>
+            @endif
         </div>
     </div>
     @endforeach

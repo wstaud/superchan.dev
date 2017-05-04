@@ -8,20 +8,25 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Session;
 use Log;
-use DB;
 use Input;
+use Auth;
+use App\Models\Post;
+use DB;
 
 class PostsController extends Controller
 {
 
     public function index()
     {
+        $loggedInUser = Auth::user()->id;
         $posts = \App\Models\Post::orderBy('created_at', 'desc')->paginate(8);
 
         if(Input::has('b')){
-            $posts = DB::table('posts')->where('board',Input::get('b'))->get();
+            $posts = \App\Models\Post::orderBy('created_at', 'desc')->where('board',Input::get('b'))->paginate(8);
         }
-        return view('/posts/index')->with('posts', $posts);
+        $data = array('posts' => $posts, 'user' => $loggedInUser);
+
+        return view('/posts/index', $data);
     }
 
     public function create()
@@ -86,22 +91,31 @@ class PostsController extends Controller
 
     public function show($id)
     {
+        $loggedInUser = Auth::user()->id;
         $post = \App\Models\Post::findOrFail($id);
-       
-        return view('/posts/show')->with('post', $post);
-        
+
+        $data = array('post' => $post, 'user' => $loggedInUser);
+
+        return view('/posts/show', $data);    
     }
 
     public function edit($id)
     {
+        
         $post = \App\Models\Post::findOrFail($id);
-        return view('/posts/edit')->with('posts', $posts);
+        if(Auth::user()->id === $post->created_by){
+            return view('/posts/edit')->with('post', $post);
+        }else{
+            abort(403);
+        }
+        
     }
 
     public function update(Request $request, $id)
     {   
         $post = \App\Models\Post::findOrFail($id);
         $post->title = $request->title;
+        $post->board = $request->board;
         $post->url = $request->url;
         $post->content = $request->content;
         $post->created_by = $post->created_by;

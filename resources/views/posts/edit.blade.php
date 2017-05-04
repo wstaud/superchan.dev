@@ -16,12 +16,12 @@
             </div>
             <div class="whiteBox">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" data-required>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Title" value="{{$post->title}}" data-required>
                 </div>
                 <div class="form-group">
                 <label for="exampleSelect1">Board</label>
                     <select class="form-control" id="board" name="board">
-                        <option selected>Choose...</option>
+                        <option selected>{{$post->board}}</option>
                         <option>technology</option>
                         <option>comics and cartoons</option>
                         <option>tv and film</option>
@@ -70,10 +70,10 @@
                 </div>
                 <div class="form-group">
                     <label for="content">Content <br> (at least one of the three below are required)</label>
-                    <textarea class="form-control" id="content" name="content" rows="8"></textarea>
+                    <textarea class="form-control" id="content" name="content" rows="8">{{$post->content}}</textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" id="url" name="url" placeholder="URL" data-required>
+                    <input type="text" class="form-control" id="url" name="url" value="{{$post->url}}" placeholder="URL" data-required>
                 </div>
                 <div class="form-group">
                 {!! Form::label('Product Image') !!}
