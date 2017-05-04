@@ -27,6 +27,10 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\Models\Post', 'created_by');
     }
 
+    public function comment() {
+        return $this->hasMany('App\Models\Comments', 'created_by');
+    }
+
     /**
      * The attributes that are mass assignable.
      *

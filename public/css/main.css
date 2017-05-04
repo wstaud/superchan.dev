@@ -129,6 +129,10 @@ html, body {
   .whiteBox h1 {
     color: #880000; }
 
+.commentBox {
+  background: #ffdfce;
+  margin-top: 10px; }
+
 .thumbnailContainer {
   max-height: 200px;
   overflow: hidden; }
@@ -160,13 +164,16 @@ html, body {
   max-width: 930px;
   height: auto; }
 
+.commentTextBox {
+  max-width: 530px; }
+
 .leftButton {
   padding-left: 15px; }
   .leftButton button {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    background: #FFCCAA;
+    background: #f9934f;
     border: 1px solid #FFCCAA; }
   .leftButton button:hover {
     background: #965a33;
@@ -178,11 +185,22 @@ html, body {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-left-radius: 0;
-    background: #f9934f;
+    background: #FFCCAA;
     border: 1px solid #f9934f; }
   .rightButton a:hover {
     background: #965a33;
     border: 1px solid #965a33; }
+
+#commentSubmitButton {
+  float: right; }
+
+.commentUsernameText {
+  font-size: 12px;
+  font-weight: bold; }
+
+.commentCreatedText {
+  font-size: 12px;
+  color: gray; }
 
 #loginHeaderBox {
   height: 50px;

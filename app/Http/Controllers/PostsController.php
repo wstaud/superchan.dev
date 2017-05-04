@@ -102,11 +102,19 @@ class PostsController extends Controller
         }   
         $loggedInUser = "";
         $post = \App\Models\Post::findOrFail($id);
+        $comments = \App\Models\Comments::orderBy('post_id', 'desc')->where('post_id', $post->id)->paginate(20);
 
-        $data = array('post' => $post, 'user' => $loggedInUser);
+        $data = array('post' => $post, 'user' => $loggedInUser, 'comments' => $comments);
 
         return view('/posts/show', $data);    
     }
+
+    public function comment(Request $request)
+    {
+        
+    }
+
+
 
     public function edit($id)
     {

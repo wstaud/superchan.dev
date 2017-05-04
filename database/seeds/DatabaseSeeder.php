@@ -14,6 +14,9 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
+        $this->command->info('Deleting comments records');
+        DB::table('comments')->delete();
+
         $this->command->info('Deleting posts records');
         DB::table('posts')->delete();
 
@@ -22,6 +25,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call('UserTableSeeder');
         $this->call('PostsTableSeeder');
+        $this->call('CommentsTableSeeder');
 
         // $this->call(UserTableSeeder::class);
 
