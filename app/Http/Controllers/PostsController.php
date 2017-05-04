@@ -18,15 +18,20 @@ class PostsController extends Controller
 
     public function index()
     {
-        $loggedInUser = Auth::user()->id;
         $posts = \App\Models\Post::orderBy('created_at', 'desc')->paginate(8);
 
         if(Input::has('b')){
             $posts = \App\Models\Post::orderBy('created_at', 'desc')->where('board',Input::get('b'))->paginate(8);
         }
+        if (Auth::check()) {
+            $loggedInUser = Auth::user()->id;
+        }else{
+            $loggedInUser = "";
+        }
         $data = array('posts' => $posts, 'user' => $loggedInUser);
-
         return view('/posts/index', $data);
+        
+        
     }
 
     public function create()
